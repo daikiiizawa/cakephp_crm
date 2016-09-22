@@ -6,23 +6,23 @@
         <body>
             <dl>
                 <dt>お名前</dt>
-                <dd><?= $customer['Customer']['family_name'] . '&nbsp;' .
-                $customer['Customer']['given_name'];?></dd>
+                <dd><?= h($customer['Customer']['family_name']) . '&nbsp;' .
+                h($customer['Customer']['given_name']);?></dd>
             </dl>
 
             <dl>
                 <dt>電子メール</dt>
-                <dd><?= $customer['Customer']['email'] ;?></dd>
+                <dd><?= h($customer['Customer']['email']) ;?></dd>
             </dl>
 
             <dl>
                 <dt>会社名</dt>
-                <dd><?= $customer['Company']['name'] ;?></dd>
+                <dd><?= h($customer['Company']['name']) ;?></dd>
             </dl>
 
             <dl>
                 <dt>役職名</dt>
-                <dd><?= $customer['Post']['position_name'] ;?></dd>
+                <dd><?= h($customer['Post']['position_name']) ;?></dd>
             </dl>
 
             <?= $this->Html->link(
@@ -38,32 +38,25 @@
         <hr noshade>
     </table>
 
-<!-- 対応履歴一覧 -->
+    <!-- 対応履歴一覧 -->
     <table>
         <h2>対応履歴 (<?= count($comments);?>件)</h2>
-        <div class="pagination">
-            <?= $this->Paginator->first('最初', $options = array()) ;?>
-            <?= $this->Paginator->prev('前へ', array(), null, ['class' => 'prev disabled']) ;?>
-            <?= $this->Paginator->numbers(array('separator' => '')) ;?>
-            <?= $this->Paginator->next('次へ', array(), null, ['class' => 'next disabled']) ;?>
-            <?= $this->Paginator->last('最後', $options = array()) ;?>
-        </div>
 
         <?php foreach ($comments as $comment): ?>
             <tr>
                 <td style="width:10%;">
                     <?= $this->Html->Image(
-                        $comment['User']['image_url'],
+                        h($comment['User']['image_url']),
                         ['style' => 'width: 50px'])
                     ;?>
                 </td>
 
                 <td>
                 <ul style="list-style:none;">
-                    <li><?= $comment['User']['family_name'].'&nbsp;'.
-                        $comment['User']['given_name'] ;?></li>
+                    <li><?= h($comment['User']['family_name']).'&nbsp;'.
+                        h($comment['User']['given_name']) ;?></li>
 
-                        <li><p><?= $comment['Comment']['body'] ;?></p></li>
+                        <li><p><?= h($comment['Comment']['body']) ;?></p></li>
 
                     <li>
                         投稿日時：<?= $comment['Comment']['created'] ;?>
@@ -81,6 +74,15 @@
             </tr>
         <?php endforeach ?>
     </table>
+
+    <!-- 対応履歴ページネーション -->
+    <div class="pagination">
+        <?= $this->Paginator->first('最初', $options = array()) ;?>
+        <?= $this->Paginator->prev('前へ', array(), null, ['class' => 'prev disabled']) ;?>
+        <?= $this->Paginator->numbers(array('separator' => '')) ;?>
+        <?= $this->Paginator->next('次へ', array(), null, ['class' => 'next disabled']) ;?>
+        <?= $this->Paginator->last('最後', $options = array()) ;?>
+    </div>
 
     <!-- 対応内容フォーム -->
     <?= $this->Form->create('Comment',[

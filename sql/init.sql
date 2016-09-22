@@ -138,3 +138,15 @@ ALTER TABLE `comments`
   ADD CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 
+---------------------------------------------------------------------------
+ALTER TABLE `customers` ADD KEY `id` (`id`);
+ALTER TABLE `customers`
+  ADD CONSTRAINT `customers_ibfk_3` FOREIGN KEY (`id`) REFERENCES `comments` (`customer_id`);
+
+
+ALTER TABLE `customers` ADD KEY `id` (`id`), ADD KEY `company_id` (`company_id`), ADD KEY `post_id` (`post_id`);
+ALTER TABLE `customers`
+  ADD CONSTRAINT `customers_ibfk_3` FOREIGN KEY (`id`) REFERENCES `comments` (`customer_id`);
+  ADD CONSTRAINT `customers_ibfk_2` FOREIGN KEY (`company_id`) REFERENCES `companies` (`id`),
+  ADD CONSTRAINT `customers_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`);
+

@@ -44,7 +44,7 @@
 
     <?= $this->Form->end([
         'label' => '新規登録',
-        'class' => 'btn btn-default btn-lg',
+        'class' => 'btn btn-primary btn-lg',
         'style' => 'margin: 20px 0px 20px 0px;'
         ]); ?>
 
@@ -52,5 +52,5 @@
         'Log in',
         ['action' => 'login']
         ) ;?>
-    </div>
+
 </div>

@@ -4,14 +4,15 @@
     <?= $this->Flash->render('auth'); ?>
 
     <?= $this->Html->link(
-            'Log in',
-            ['action' => 'login']
-            ) ;?>
+        'Log in',
+        ['action' => 'login']
+        ) ;?>
     <br/>
 
     <?= $this->Html->link(
-            'Sign up',
-            ['action' => 'signup']
-            ) ;?><br/>
+        'Sign up',
+        ['action' => 'signup']
+        ) ;?>
+    <br/>
 
 </div>

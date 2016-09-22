@@ -25,6 +25,7 @@ class CustomersController extends AppController {
             $search_mail = $this->request->data['Customer']['search_mail'];
             $search_company = $this->request->data['Customer']['search_company'];
             $search_comment = $this->request->data['Customer']['search_comment'];
+            // $this->Customer->hasMany['Comment']['conditions'] = ['Comment.body LIKE' => "%{$search_comment}%"];
             $conditions = [
                 'Customer.family_name LIKE' => "%{$search_sei}%",
                 'Customer.given_name LIKE' => "%{$search_mei}%",
@@ -33,6 +34,7 @@ class CustomersController extends AppController {
                 // 'Comment.body LIKE' => "%{$search_comment}%",
                 ];
             $customers = $this->paginate('Customer', $conditions);
+            // $this->Customer->hasMany['Comment']['conditions'] = null;
 
         } else {
             $customers = $this->paginate('Customer');

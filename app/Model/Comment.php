@@ -6,6 +6,7 @@ class Comment extends AppModel {
         'Customer' => ['className' => 'Customer'],
         'User' => ['className' => 'User',]
     ];
+
     public $validate = [
         'body' => [
             'required' => [

@@ -1,6 +1,6 @@
 <div class='container'>
-
 <div class="col-md-12">
+
     <h2>顧客情報一覧</h2>
     <p>お客様情報が表示されます。</p>
 
@@ -10,6 +10,7 @@
             ]) ;?>
     </div>
 
+    <!-- 検索機能 -->
     <div class='form-inline'>
         <?= $this->Form->create(NULL, [
             'novalidate' => true,
@@ -39,7 +40,6 @@
             ]); ?>
         </div>
 
-
         <div class="form-group">
         <?= $this->Form->input('search_company', [
             'label' => '会社名',
@@ -64,7 +64,6 @@
                 'class' => 'btn btn-default active'
                 ]); ?>
         </div>
-
         <div class="btn-group">
             <?= $this->Html->link('リセット',
                 ['action' => 'index'], [
@@ -74,43 +73,45 @@
     </div>
     <hr noshade>
 
-</div>
+    <!-- 顧客一覧情報 -->
+    <table class="table table-striped">
+        <thead class="text-info">
+            <th>姓</th>
+            <th>名</th>
+            <th>メールアドレス</th>
+            <th>会社名</th>
+            <th>役職名</th>
+            <th>コメント数</th>
+            <th>リンク</th>
+        </thead>
 
-<table class="table table-striped">
-    <thead class="text-info">
-        <th>姓</th>
-        <th>名</th>
-        <th>メールアドレス</th>
-        <th>会社名</th>
-        <th>役職名</th>
-        <th>コメント数</th>
-        <th>リンク</th>
-    </thead>
+        <tbody>
+        <?php foreach ($customers as $customer) :?>
+            <tr>
+                <td><?= h($customer['Customer']['family_name']) ;?></td>
+                <td><?= h($customer['Customer']['given_name']) ;?></td>
+                <td><?= h($customer['Customer']['email']) ;?></td>
+                <td><?= h($customer['Company']['name']) ;?></td>
+                <td><?= h($customer['Post']['position_name']) ;?></td>
+                <td><?= count($customer['Comment']);?></td>
+                <td class="btn btn-default">
+                    <?= $this->Html->link('詳細',[
+                    'action' => 'view',$customer['Customer']['id']
+                    ]) ;?>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+        </tbody>
+    </table>
 
-    <tbody>
-    <?php foreach ($customers as $customer) :?>
-        <tr>
-            <td><?= $customer['Customer']['family_name'] ;?></td>
-            <td><?= $customer['Customer']['given_name'] ;?></td>
-            <td><?= $customer['Customer']['email'] ;?></td>
-            <td><?= $customer['Company']['name'] ;?></td>
-            <td><?= $customer['Post']['position_name'] ;?></td>
-            <td><?= count($customer['Comment']);?></td>
-            <td class="btn btn-default">
-                <?= $this->Html->link('詳細',[
-                'action' => 'view',$customer['Customer']['id']
-                ]) ;?>
-            </td>
-        </tr>
-    <?php endforeach; ?>
-    </tbody>
-</table>
-
+<!-- ページネーション -->
 <div class="pagination">
     <?= $this->Paginator->first('最初', $options = array()) ;?>
     <?= $this->Paginator->prev('前へ', array(), null, ['class' => 'prev disabled']) ;?>
     <?= $this->Paginator->numbers(array('separator' => '')) ;?>
     <?= $this->Paginator->next('次へ', array(), null, ['class' => 'next disabled']) ;?>
     <?= $this->Paginator->last('最後', $options = array()) ;?>
+</div>
+
 </div>
 </div>
