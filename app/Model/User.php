@@ -8,17 +8,9 @@ App::uses(
     );
 
 class User extends AppModel {
-    // public $hasMany = [
-    //     'Favorite' => [
-    //         'className' => 'Favorite',
-    //         'dependent' => true
-    //     ],
-    //     'Tweet' => [
-    //         'className' => 'Tweet',
-    //         'dependent' => true // User が削除されたら Tweet も再帰的に削除する
-    //     ]
-    // ];
-
+    public $hasMany = [
+        'Comment' => ['className' => 'Comment']
+    ];
 
     public $validate = [
         'family_name' => [

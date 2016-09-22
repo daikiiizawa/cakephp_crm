@@ -1,6 +1,6 @@
 <div class="col-md-8 col-md-offset-2">
 
-    <h2>ユーザー新規登録</h2>
+    <h2>ユーザー編集</h2>
     <?= $this->Form->create('User', [
             'type'  => 'post',
             'novalidate' => true,
@@ -32,26 +32,49 @@
             ]); ?>
 
     <?= $this->Form->input('password', [
-            'label' => 'パスワード (8文字以上が必要です)',
+            'label' => '新しいパスワード',
             'type'  => 'password',
-            'class' => 'form-control'
+            'class' => 'form-control',
             ]); ?>
 
     <?= $this->Form->input('password_confirm', [
-            'label' => 'パスワード再入力',
+            'label' => '新しいパスワード (再入力)',
             'type'  => 'password',
             'class' => 'form-control'
             ]); ?>
 
-    <?= $this->Form->end([
-            'label' => '新規登録',
-            'class' => 'btn btn-default btn-lg',
-            'style' => 'margin: 20px 0px 20px 0px;'
+    <?= $this->Form->input('password_current', [
+            'label' => '現在のパスワード',
+            'type'  => 'password',
+            'class' => 'form-control'
             ]); ?>
 
+    <?= $this->Form->hidden('id') ?>
+
+    <?= $this->Form->end([
+                'label' => '更新する',
+                'class' => 'btn btn-default bimage_url',
+                'style' => 'margin-top: 20px;'
+                ]); ?>
+
+    <h3>アカウント削除</h3>
+
+    <?= $this->Form->postLink(
+        'アカウントを削除する', [
+            'action' => 'userdelete',
+            $currentUser['id']
+        ], [
+            'confirm' => '本当に削除してよろしいですか？',
+            'class' => "btn btn-danger",
+            'style' => 'margin: 10px 0 10px 0;'
+    ]); ?> <br/>
+
     <?= $this->Html->link(
-            'Log in',
-            ['action' => 'login']
-            ) ;?>
-    </div>
+        '戻る', [
+            'controller' => 'customers',
+            'action' => 'index'], [
+                'class' => "btn btn-default"
+            ]
+    ); ?>
+
 </div>

@@ -7,8 +7,8 @@
 
 <div class="col-md-12"?>
 <?= $this->Html->link('顧客登録', ['action' => 'add'], [
-    'class' => 'btn btn-primary pull-right'
-    ]) ;?>
+        'class' => 'btn btn-primary pull-right'
+        ]) ;?>
 </div>
 
     <div class='form-inline'>
@@ -16,12 +16,13 @@
             NULL, [
             'novalidate' => true,
             'url' => [
-            'action' => 'find'
+            'action' => 'find',
+            'class' => 'form-group'
             ]]); ?>
 
         <div class="form-group">
         <?= $this->Form->input(
-            'search[]', [
+            'search', [
             'label' => '姓',
             'class' => 'form-control',
             ]); ?>
@@ -29,7 +30,7 @@
 
         <div class="form-group">
         <?= $this->Form->input(
-            'search[]', [
+            'search', [
             'label' => '名',
             'class' => 'form-control'
             ]); ?>
@@ -37,7 +38,7 @@
 
         <div class="form-group">
         <?= $this->Form->input(
-            'search[]', [
+            'search', [
             'label' => '電子メール',
             'class' => 'form-control',
             'style' => 'width:250px'
@@ -46,7 +47,7 @@
 
         <div class="form-group">
         <?= $this->Form->input(
-            'search[]', [
+            'search', [
             'label' => '会社名',
             'class' => 'form-control',
             'style' => 'width:250px'
@@ -55,7 +56,7 @@
 
         <div class="form-group">
         <?= $this->Form->input(
-            'search[]', [
+            'search', [
             'label' => 'コメント',
             'class' => 'form-control',
             'style' => 'width:250px'
@@ -78,9 +79,11 @@
                 ]); ?>
         </div>
     </div>
+
 <hr noshade>
 
 </div>
+
 
 <table class="table table-striped">
     <thead class="text-info">
@@ -111,11 +114,13 @@
 </table>
 
 <div class="pagination">
-    <?= $this->Paginator->first('最初', $options = array()) ;?>
-    <?= $this->Paginator->prev('前へ', array(), null, ['class' => 'prev disabled']) ;?>
-    <?= $this->Paginator->numbers(array('separator' => '')) ;?>
-    <?= $this->Paginator->next('次へ', array(), null, ['class' => 'next disabled']) ;?>
-    <?= $this->Paginator->last('最後', $options = array()) ;?>
+
+<?= $this->Paginator->first('最初', $options = array()) ;?>
+<?= $this->Paginator->prev('前へ', array(), null, ['class' => 'prev disabled']) ;?>
+<?= $this->Paginator->numbers(array('separator' => '')) ;?>
+<?= $this->Paginator->next('次へ', array(), null, ['class' => 'next disabled']) ;?>
+<?= $this->Paginator->last('最後', $options = array()) ;?>
+
 </div>
 
 </div>
