@@ -3,7 +3,6 @@
 class CustomersController extends AppController {
     public $uses = ['Customer', 'Company', 'Post', 'Comment'];
     public $name = 'Customers';
-
     public $components = [
         'Paginator' => [
             'limit' => 10,
@@ -19,22 +18,48 @@ class CustomersController extends AppController {
 
     public function find() {
         if ($this->request->data) {
-            $confitions = array();
             $search_sei = $this->request->data['Customer']['search_sei'];
             $search_mei = $this->request->data['Customer']['search_mei'];
             $search_mail = $this->request->data['Customer']['search_mail'];
             $search_company = $this->request->data['Customer']['search_company'];
             $search_comment = $this->request->data['Customer']['search_comment'];
-            // $this->Customer->hasMany['Comment']['conditions'] = ['Comment.body LIKE' => "%{$search_comment}%"];
-            $conditions = [
-                'Customer.family_name LIKE' => "%{$search_sei}%",
-                'Customer.given_name LIKE' => "%{$search_mei}%",
-                'Customer.email LIKE' => "%{$search_mail}%",
-                'Company.name LIKE' => "%{$search_company}%",
-                // 'Comment.body LIKE' => "%{$search_comment}%",
+
+            if (!$search_comment) {
+                $conditions = [
+                    'Customer.family_name LIKE' => "%{$search_sei}%",
+                    'Customer.given_name LIKE' => "%{$search_mei}%",
+                    'Customer.email LIKE' => "%{$search_mail}%",
+                    'Company.name LIKE' => "%{$search_company}%",
                 ];
-            $customers = $this->paginate('Customer', $conditions);
-            // $this->Customer->hasMany['Comment']['conditions'] = null;
+                $customers = $this->paginate('Customer', $conditions);
+
+            } else {
+                $this->paginate = [
+                    'conditions' => [
+                        'Customer.family_name LIKE' => "%{$search_sei}%",
+                        'Customer.given_name LIKE' => "%{$search_mei}%",
+                        'Customer.email LIKE' => "%{$search_mail}%",
+                        'Company.name LIKE' => "%{$search_company}%",
+                    ],
+                    'joins' => [
+                        [
+                            'table' => 'comments',
+                            'alias' => 'Comment',
+                            'type' => 'inner',
+                            'conditions' => [
+                                'Comment.customer_id = Customer.id',
+                                'Comment.body LIKE' => "%{$search_comment}%"
+                            ]
+                        ]
+                    ],
+                    'contain' => ['Comment'],
+                    'group' => 'Customer.id',
+                    'recursive' => 1,
+                    'limit' => 10,
+                    'order' => ['created' => 'desc']
+                ];
+                $customers = $this->paginate('Customer');
+            }
 
         } else {
             $customers = $this->paginate('Customer');

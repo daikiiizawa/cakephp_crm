@@ -81,7 +81,8 @@
         '戻る', [
             'controller' => 'customers',
             'action' => 'index'], [
-                'class' => "btn btn-default"
+                'class' => "btn btn-default",
+                'style' => 'margin: 0 0 20px 0;'
             ]
     ); ?>
 

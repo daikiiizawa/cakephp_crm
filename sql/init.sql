@@ -84,21 +84,21 @@ ALTER TABLE `customers` MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 -- "index_customers_on_post_id"
 
 -- テストレコード挿入 // customers
-INSERT INTO `customers` (`family_name`, `given_name`, `email`, `company_id`, `post_id`) VALUES ("苗字1", "名前1", "aa@mail.com", "1", "1");
-INSERT INTO `customers` (`family_name`, `given_name`, `email`, `company_id`, `post_id`) VALUES ("苗字2", "名前2", "bb@mail.com", "2", "1");
-INSERT INTO `customers` (`family_name`, `given_name`, `email`, `company_id`, `post_id`) VALUES ("苗字3", "名前3", "cc@mail.com", "2", "1");
-INSERT INTO `customers` (`family_name`, `given_name`, `email`, `company_id`, `post_id`) VALUES ("苗字4", "名前4", "dd@mail.com", "3", "2");
-INSERT INTO `customers` (`family_name`, `given_name`, `email`, `company_id`, `post_id`) VALUES ("苗字5", "名前5", "ee@mail.com", "4", "4");
-INSERT INTO `customers` (`family_name`, `given_name`, `email`, `company_id`, `post_id`) VALUES ("苗字6", "名前1", "ff@mail.com", "1", "1");
-INSERT INTO `customers` (`family_name`, `given_name`, `email`, `company_id`, `post_id`) VALUES ("苗字7", "名前2", "gg@mail.com", "2", "1");
-INSERT INTO `customers` (`family_name`, `given_name`, `email`, `company_id`, `post_id`) VALUES ("苗字8", "名前3", "hh@mail.com", "2", "1");
-INSERT INTO `customers` (`family_name`, `given_name`, `email`, `company_id`, `post_id`) VALUES ("苗字9", "名前4", "ii@mail.com", "3", "2");
-INSERT INTO `customers` (`family_name`, `given_name`, `email`, `company_id`, `post_id`) VALUES ("苗字10", "名前5", "jj@mail.com", "4", "4");
-INSERT INTO `customers` (`family_name`, `given_name`, `email`, `company_id`, `post_id`) VALUES ("苗字11", "名前1", "kk@mail.com", "1", "1");
-INSERT INTO `customers` (`family_name`, `given_name`, `email`, `company_id`, `post_id`) VALUES ("苗字12", "名前2", "ll@mail.com", "2", "1");
-INSERT INTO `customers` (`family_name`, `given_name`, `email`, `company_id`, `post_id`) VALUES ("苗字13", "名前3", "mm@mail.com", "2", "1");
-INSERT INTO `customers` (`family_name`, `given_name`, `email`, `company_id`, `post_id`) VALUES ("苗字14", "名前4", "nn@mail.com", "3", "2");
-INSERT INTO `customers` (`family_name`, `given_name`, `email`, `company_id`, `post_id`) VALUES ("苗字15", "名前5", "oo@mail.com", "4", "4");
+INSERT INTO `customers` (`family_name`, `given_name`, `email`, `company_id`, `post_id`, `created`) VALUES ("苗字1", "名前1", "aa@mail.com", "1", "1", now());
+INSERT INTO `customers` (`family_name`, `given_name`, `email`, `company_id`, `post_id`, `created`) VALUES ("苗字2", "名前2", "bb@mail.com", "2", "1", now());
+INSERT INTO `customers` (`family_name`, `given_name`, `email`, `company_id`, `post_id`, `created`) VALUES ("苗字3", "名前3", "cc@mail.com", "2", "1", now());
+INSERT INTO `customers` (`family_name`, `given_name`, `email`, `company_id`, `post_id`, `created`) VALUES ("苗字4", "名前4", "dd@mail.com", "3", "2", now());
+INSERT INTO `customers` (`family_name`, `given_name`, `email`, `company_id`, `post_id`, `created`) VALUES ("苗字5", "名前5", "ee@mail.com", "4", "4", now());
+INSERT INTO `customers` (`family_name`, `given_name`, `email`, `company_id`, `post_id`, `created`) VALUES ("苗字6", "名前1", "ff@mail.com", "1", "1", now());
+INSERT INTO `customers` (`family_name`, `given_name`, `email`, `company_id`, `post_id`, `created`) VALUES ("苗字7", "名前2", "gg@mail.com", "2", "1", now());
+INSERT INTO `customers` (`family_name`, `given_name`, `email`, `company_id`, `post_id`, `created`) VALUES ("苗字8", "名前3", "hh@mail.com", "2", "1", now());
+INSERT INTO `customers` (`family_name`, `given_name`, `email`, `company_id`, `post_id`, `created`) VALUES ("苗字9", "名前4", "ii@mail.com", "3", "2", now());
+INSERT INTO `customers` (`family_name`, `given_name`, `email`, `company_id`, `post_id`, `created`) VALUES ("苗字10", "名前5", "jj@mail.com", "4", "4", now());
+INSERT INTO `customers` (`family_name`, `given_name`, `email`, `company_id`, `post_id`, `created`) VALUES ("苗字11", "名前1", "kk@mail.com", "1", "1", now());
+INSERT INTO `customers` (`family_name`, `given_name`, `email`, `company_id`, `post_id`, `created`) VALUES ("苗字12", "名前2", "ll@mail.com", "2", "1", now());
+INSERT INTO `customers` (`family_name`, `given_name`, `email`, `company_id`, `post_id`, `created`) VALUES ("苗字13", "名前3", "mm@mail.com", "2", "1", now());
+INSERT INTO `customers` (`family_name`, `given_name`, `email`, `company_id`, `post_id`, `created`) VALUES ("苗字14", "名前4", "nn@mail.com", "3", "2", now());
+INSERT INTO `customers` (`family_name`, `given_name`, `email`, `company_id`, `post_id`, `created`) VALUES ("苗字15", "名前5", "oo@mail.com", "4", "4", now());
 
 
 -- commentsテーブル作成
@@ -136,17 +136,3 @@ ALTER TABLE `comments` ADD KEY `customer_id` (`customer_id`), ADD KEY `user_id` 
 ALTER TABLE `comments`
   ADD CONSTRAINT `comments_ibfk_2` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`),
   ADD CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
-
-
----------------------------------------------------------------------------
-ALTER TABLE `customers` ADD KEY `id` (`id`);
-ALTER TABLE `customers`
-  ADD CONSTRAINT `customers_ibfk_3` FOREIGN KEY (`id`) REFERENCES `comments` (`customer_id`);
-
-
-ALTER TABLE `customers` ADD KEY `id` (`id`), ADD KEY `company_id` (`company_id`), ADD KEY `post_id` (`post_id`);
-ALTER TABLE `customers`
-  ADD CONSTRAINT `customers_ibfk_3` FOREIGN KEY (`id`) REFERENCES `comments` (`customer_id`);
-  ADD CONSTRAINT `customers_ibfk_2` FOREIGN KEY (`company_id`) REFERENCES `companies` (`id`),
-  ADD CONSTRAINT `customers_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`);
-

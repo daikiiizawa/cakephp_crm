@@ -52,7 +52,7 @@
         <?= $this->Form->input('search_comment', [
             'label' => 'コメント',
             'class' => 'form-control',
-            'style' => 'width:250px'
+            'style' => 'width:250px',
             ]); ?>
         </div>
     </div>
