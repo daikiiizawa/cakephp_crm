@@ -54,7 +54,7 @@ class CustomersController extends AppController {
             $this->Customer->id = $id;
             if ($this->Customer->save($this->request->data)) {
                 $this->Flash->success('顧客情報を更新しました');
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['action' => 'view',$id]);
             }
         } else {
             $this->request->data = $this->Customer->findById($id);
@@ -83,7 +83,10 @@ class CustomersController extends AppController {
         $customer = $this->Customer->findById($id);
         $this->set('customer', $customer);
 
-
+        // 対応内容のページネーション
+        $customerId = $customer['Customer']['id'];
+        $comments = $this->paginate('Comment',array('Comment.customer_id' => $customerId));
+        $this->set(compact('comments'));
     }
 }
 

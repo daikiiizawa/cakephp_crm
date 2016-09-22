@@ -8,7 +8,10 @@ class Customer extends AppModel {
     ];
 
     public $hasMany = [
-        'Comment' => ['className' => 'Comment']
+        'Comment' => [
+            'className' => 'Comment',
+            'dependent' => true
+        ]
     ];
 
     public $validate = [

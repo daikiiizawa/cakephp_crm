@@ -2,13 +2,13 @@
 
 class CommentsController extends AppController {
     public $uses = ['Comment', 'Customer'];
-    // public $uses = ['Customer', 'Company', 'Post', 'Comment'];
 
     public function delete($id = null){
         if (!$this->Comment->exists($id)) {
             throw new NotFoundException('対応履歴がみつかりません');
         }
-
+        $customerId = $this->Comment->findById($id)['Customer']['id'];
+        $this->set('customerId', $customerId);
 
         $this->request->allowMethod('post', 'delete');
         $this->Comment->delete($id);
@@ -16,7 +16,7 @@ class CommentsController extends AppController {
 
         return $this->redirect([
             'controller' => 'customers',
-            'action' => 'index',    // ビューをリダイレクト先にしたい
+            'action' => 'view',$customerId
         ]);
     }
 
@@ -30,6 +30,9 @@ class CommentsController extends AppController {
                 $this->Flash->success('対応内容を登録しました');
                 return $this->redirect(['controller' => 'customers', 'action' => 'view',$customerId]);
 
+            } else {
+                $this->Flash->error('対応内容が未入力です');
+                return $this->redirect(['controller' => 'customers', 'action' => 'view',$customerId]);
             }
         }
     }
