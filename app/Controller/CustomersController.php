@@ -14,7 +14,6 @@ class CustomersController extends AppController {
     public function index() {
         $customers = $this->Paginator->paginate('Customer');
         $this->set('customers', $customers);
-
     }
 
     public function find() {
@@ -28,6 +27,20 @@ class CustomersController extends AppController {
             $customers = $this->paginate('Customer');
         }
         $this->set('customers', $customers);
+    }
+
+    public function add() {
+        $this->set('companies',$this->Company->find('list'));
+        $this->set('posts',$this->Post->find('list',['fields'=>['id','position_name']]));
+
+        if ($this->request->is('post')) {
+            $this->Customer->create();
+
+            if ($this->Customer->save($this->request->data)) {
+                $this->Flash->success('登録が完了しました');
+                return $this->redirect(['action' => 'index']);
+            }
+        }
     }
 
 }

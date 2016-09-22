@@ -41,6 +41,7 @@ INSERT INTO `posts` (`position_name`) VALUES ("課長");
 INSERT INTO `posts` (`position_name`) VALUES ("部長");
 INSERT INTO `posts` (`position_name`) VALUES ("平社員");
 INSERT INTO `posts` (`position_name`) VALUES ("専務");
+INSERT INTO `posts` (`position_name`) VALUES ("副社長");
 
 
 -- companiesテーブル作成
