@@ -34,8 +34,9 @@ class Customer extends AppModel {
                 'message' => '正しいメールアドレスを入力してください。'
             ],
             'emailExists' => [
-                'rule' => ['isUnique', 'email'],
-                'message' => '入力されたメールアドレスは既に登録されています。'
+                'rule' => ['isUnique'],
+                'message' => '入力されたメールアドレスは既に登録されています。',
+                'on' => 'create'
             ],
         ],
         'company_id' => [

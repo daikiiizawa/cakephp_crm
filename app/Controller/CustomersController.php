@@ -43,4 +43,34 @@ class CustomersController extends AppController {
         }
     }
 
+    public function edit($id = null) {
+        if (!$this->Customer->exists($id)) {
+            throw new NotFoundException('顧客情報がみつかりません');
+        }
+        $this->set('companies',$this->Company->find('list'));
+        $this->set('posts',$this->Post->find('list',['fields'=>['id','position_name']]));
+
+        if ($this->request->is(['post', 'put'])) {
+            $this->Customer->id = $id;
+            if ($this->Customer->save($this->request->data)) {
+                $this->Flash->success('顧客情報を更新しました');
+                return $this->redirect(['action' => 'index']);
+            }
+        } else {
+            $this->request->data = $this->Customer->findById($id);
+        }
+        $this->set('id',$id);
+    }
+
+    public function delete($id = null) {
+        if (!$this->Customer->exists($id)) {
+            throw new NotFoundException('顧客情報がみつかりません');
+        }
+
+        $this->request->allowMethod('post', 'delete');
+        $this->Customer->delete($id);
+        $this->Flash->success('顧客情報を削除しました');
+        return $this->redirect(['action' => 'index']);
+    }
 }
+
