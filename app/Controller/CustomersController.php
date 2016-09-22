@@ -72,5 +72,18 @@ class CustomersController extends AppController {
         $this->Flash->success('顧客情報を削除しました');
         return $this->redirect(['action' => 'index']);
     }
+
+    public function view($id = null) {
+        if (!$this->Customer->exists($id)) {
+            throw new NotFoundException('顧客情報がみつかりません');
+        }
+
+        // 顧客情報を取得
+        $this->Customer->recursive = 2;
+        $customer = $this->Customer->findById($id);
+        $this->set('customer', $customer);
+
+
+    }
 }
 

@@ -49,7 +49,7 @@
             'class' => "btn btn-danger"
         ]); ?>
     <?= $this->Html->link(
-        '戻る',['action' => 'index'],[
+        '戻る',['action' => 'view', $id],[
         'class' => "btn btn-default"]
         ) ;?>
 

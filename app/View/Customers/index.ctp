@@ -12,32 +12,28 @@
 </div>
 
     <div class='form-inline'>
-        <?= $this->Form->create(
-            NULL, [
+        <?= $this->Form->create(NULL, [
             'novalidate' => true,
             'url' => [
             'action' => 'find'
             ]]); ?>
 
         <div class="form-group">
-        <?= $this->Form->input(
-            'search[]', [
+        <?= $this->Form->input('search[]', [
             'label' => '姓',
             'class' => 'form-control',
             ]); ?>
         </div>
 
         <div class="form-group">
-        <?= $this->Form->input(
-            'search[]', [
+        <?= $this->Form->input('search[]', [
             'label' => '名',
             'class' => 'form-control'
             ]); ?>
         </div>
 
         <div class="form-group">
-        <?= $this->Form->input(
-            'search[]', [
+        <?= $this->Form->input('search[]', [
             'label' => '電子メール',
             'class' => 'form-control',
             'style' => 'width:250px'
@@ -45,8 +41,7 @@
         </div>
 
         <div class="form-group">
-        <?= $this->Form->input(
-            'search[]', [
+        <?= $this->Form->input('search[]', [
             'label' => '会社名',
             'class' => 'form-control',
             'style' => 'width:250px'
@@ -54,8 +49,7 @@
         </div>
 
         <div class="form-group">
-        <?= $this->Form->input(
-            'search[]', [
+        <?= $this->Form->input('search[]', [
             'label' => 'コメント',
             'class' => 'form-control',
             'style' => 'width:250px'
@@ -103,7 +97,9 @@
             <td><?= $customer['Post']['position_name'] ;?></td>
             <td><?= count($customer['Comment']);?></td>
             <td class="btn btn-default">
-                <?= $this->Html->link('詳細',['action' => 'view']) ;?>
+                <?= $this->Html->link('詳細',[
+                'action' => 'view',$customer['Customer']['id']
+                ]) ;?>
             </td>
         </tr>
     <?php endforeach; ?>

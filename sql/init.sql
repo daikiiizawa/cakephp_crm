@@ -89,7 +89,6 @@ INSERT INTO `customers` (`family_name`, `given_name`, `email`, `company_id`, `po
 INSERT INTO `customers` (`family_name`, `given_name`, `email`, `company_id`, `post_id`) VALUES ("苗字3", "名前3", "cc@mail.com", "2", "1");
 INSERT INTO `customers` (`family_name`, `given_name`, `email`, `company_id`, `post_id`) VALUES ("苗字4", "名前4", "dd@mail.com", "3", "2");
 INSERT INTO `customers` (`family_name`, `given_name`, `email`, `company_id`, `post_id`) VALUES ("苗字5", "名前5", "ee@mail.com", "4", "4");
-
 INSERT INTO `customers` (`family_name`, `given_name`, `email`, `company_id`, `post_id`) VALUES ("苗字6", "名前1", "ff@mail.com", "1", "1");
 INSERT INTO `customers` (`family_name`, `given_name`, `email`, `company_id`, `post_id`) VALUES ("苗字7", "名前2", "gg@mail.com", "2", "1");
 INSERT INTO `customers` (`family_name`, `given_name`, `email`, `company_id`, `post_id`) VALUES ("苗字8", "名前3", "hh@mail.com", "2", "1");
@@ -118,11 +117,13 @@ ALTER TABLE `comments` MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 
 -- テストレコード挿入 // companies
-INSERT INTO `comments` (`body`, `user_id`, `customer_id`) VALUES ("選考の結果待ち", "1", "1");
-INSERT INTO `comments` (`body`, `user_id`, `customer_id`) VALUES ("選考の結果待ち", "1", "1");
-INSERT INTO `comments` (`body`, `user_id`, `customer_id`) VALUES ("選考の結果待ち", "2", "1");
-INSERT INTO `comments` (`body`, `user_id`, `customer_id`) VALUES ("選考の結果待ち", "2", "2");
-INSERT INTO `comments` (`body`, `user_id`, `customer_id`) VALUES ("選考の結果待ち", "3", "1");
+INSERT INTO `comments` (`body`, `user_id`, `customer_id`, `created`) VALUES ("選考の結果待ち", "1", "1", now());
+INSERT INTO `comments` (`body`, `user_id`, `customer_id`, `created`) VALUES ("選考の結果待ち", "1", "1", now());
+INSERT INTO `comments` (`body`, `user_id`, `customer_id`, `created`) VALUES ("選考の結果待ち", "2", "1", now());
+INSERT INTO `comments` (`body`, `user_id`, `customer_id`, `created`) VALUES ("選考の結果待ち", "2", "2", now());
+INSERT INTO `comments` (`body`, `user_id`, `customer_id`, `created`) VALUES ("選考の結果待ち", "3", "1", now());
+INSERT INTO `comments` (`body`, `user_id`, `customer_id`, `created`) VALUES ("選考辞退", "2", "1", now());
+
 
 
 -- 外部キー設定
@@ -135,4 +136,5 @@ ALTER TABLE `comments` ADD KEY `customer_id` (`customer_id`), ADD KEY `user_id` 
 ALTER TABLE `comments`
   ADD CONSTRAINT `comments_ibfk_2` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`),
   ADD CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+
 
