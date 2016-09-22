@@ -11,7 +11,8 @@
             ]); ?>
 
     <?= $this->Form->input('email', [
-            'label' => 'Email',
+            'label' => '登録時使用メールアドレス',
+            'type' => 'email',
             'class' => 'form-control'
             ]); ?>
 

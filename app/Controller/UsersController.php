@@ -94,20 +94,34 @@ class UsersController extends AppController {
 
     // パスワードリマインダ処理
     public function remind () {
-        if (!empty($this->request->data['User']['email'])) {
+        if ($this->request->is('post')) {
+            if (!empty($this->request->data['User']['email'])) {
 
-            $email = $this->request->data['User']['email'];
-            $this->set('email', $email);
+                $emailAddress = $this->request->data['User']['email'];
+                $this->set('emailAddress', $emailAddress);
 
-            $user = $this->User->find('first', [
-                'recursive' => -1,
-                'conditions' => ['User.email' => $email],
-            ]);
-            if ($user === false || empty($user)) {
-                $this->Flash->error('登録されていないメールアドレスです');
-                return false;
+                $user = $this->User->find('first', [
+                    'recursive' => -1,
+                    'conditions' => ['User.email' => $emailAddress],
+                ]);
+                if ($user === false || empty($user)) {
+                    $this->Flash->error('登録されていないメールアドレスです');
+                    return false;
+                }
+                $this->Flash->success('メールが送信されました');
+
+                $email = new CakeEmail();
+                $email->template('remind', 'default');
+                $email->viewVars(array('user' => $user));
+                // $email->viewVars(array('user' => $user, 'token' => $token));
+                $email->from(array('crm@domain.com' => 'CRM_admin'));
+                $email->to($this->data['User']['email']);
+                $email->subject('パスワード再発行');
+                $email->send();
+                $this->redirect(['action' => 'inquiry']);
+
             }
-
+            $this->Flash->error('メールアドレスが入力されていません');
         }
     }
     public function inquiry() {

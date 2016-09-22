@@ -3,13 +3,12 @@
 <div class="col-md-12">
     <h2>顧客情報一覧</h2>
     <p>お客様情報が表示されます。</p>
-</div>
 
-<div class="col-md-12"?>
-<?= $this->Html->link('顧客登録', ['action' => 'add'], [
-    'class' => 'btn btn-primary pull-right'
-    ]) ;?>
-</div>
+    <div class="col-md-12"?>
+        <?= $this->Html->link('顧客登録', ['action' => 'add'], [
+            'class' => 'btn btn-primary pull-right'
+            ]) ;?>
+    </div>
 
     <div class='form-inline'>
         <?= $this->Form->create(NULL, [
@@ -58,7 +57,7 @@
         </div>
     </div>
 
-    <div class="text-center" style="margin-top:20px;">
+    <div class="text-center" style="margin-top:10px;">
         <div class="btn-group">
             <?= $this->Form->end([
                 'label' => '検索',
@@ -73,7 +72,7 @@
                 ]); ?>
         </div>
     </div>
-<hr noshade>
+    <hr noshade>
 
 </div>
 
@@ -114,5 +113,4 @@
     <?= $this->Paginator->next('次へ', array(), null, ['class' => 'next disabled']) ;?>
     <?= $this->Paginator->last('最後', $options = array()) ;?>
 </div>
-
 </div>
