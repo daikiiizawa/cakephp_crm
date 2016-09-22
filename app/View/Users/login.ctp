@@ -32,7 +32,6 @@
 
     <?= $this->Html->link(
             'Forgot your password?',
-            ['action' => 'reminder']
+            ['action' => 'remind']
             ) ;?>
-    </div>
 </div>

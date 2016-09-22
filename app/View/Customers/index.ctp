@@ -15,33 +15,34 @@
         <?= $this->Form->create(NULL, [
             'novalidate' => true,
             'url' => [
-            'action' => 'find'
+            'action' => 'index'
             ]]); ?>
 
         <div class="form-group">
-        <?= $this->Form->input('search[]', [
+        <?= $this->Form->input('search_sei', [
             'label' => '姓',
             'class' => 'form-control',
             ]); ?>
         </div>
 
         <div class="form-group">
-        <?= $this->Form->input('search[]', [
+        <?= $this->Form->input('search_mei', [
             'label' => '名',
             'class' => 'form-control'
             ]); ?>
         </div>
 
         <div class="form-group">
-        <?= $this->Form->input('search[]', [
+        <?= $this->Form->input('search_mail', [
             'label' => '電子メール',
             'class' => 'form-control',
             'style' => 'width:250px'
             ]); ?>
         </div>
 
+
         <div class="form-group">
-        <?= $this->Form->input('search[]', [
+        <?= $this->Form->input('search_company', [
             'label' => '会社名',
             'class' => 'form-control',
             'style' => 'width:250px'
@@ -49,7 +50,7 @@
         </div>
 
         <div class="form-group">
-        <?= $this->Form->input('search[]', [
+        <?= $this->Form->input('search_comment', [
             'label' => 'コメント',
             'class' => 'form-control',
             'style' => 'width:250px'
@@ -66,8 +67,8 @@
         </div>
 
         <div class="btn-group">
-            <?= $this->Form->end([
-                'label' => 'リセット',
+            <?= $this->Html->link('リセット',
+                ['action' => 'index'], [
                 'class' => 'btn btn-default active'
                 ]); ?>
         </div>

@@ -8,7 +8,7 @@ class UsersController extends AppController {
     public function beforeFilter() {
         parent::beforeFilter();
 
-        $this->Auth->allow('signup');
+        $this->Auth->allow('signup', 'remind', 'inquiry');
     }
 
     public function signup() {
@@ -86,23 +86,30 @@ class UsersController extends AppController {
         }
     }
 
-
-    // public function login() {
-    //     if ($this->Auth->user()) {
-    //         return $this->redirect($this->Auth->redirectUrl());
-    //     }
-    //     if ($this->request->is('post')) {
-    //         if ($this->Auth->login()) {
-    //             $this->Flash->success('ログインしました');
-    //             $this->redirect($this->Auth->redirectUrl());
-    //         }
-    //         $this->Flash->error('メールアドレスかパスワードが違います');
-    //     }
-    // }
-
     public function logout() {
         $this->Cookie->delete('remember_me_cookie');
+        $this->Flash->success('ログアウトしました');
         $this->redirect($this->Auth->logout());
     }
 
+    // パスワードリマインダ処理
+    public function remind () {
+        if (!empty($this->request->data['User']['email'])) {
+
+            $email = $this->request->data['User']['email'];
+            $this->set('email', $email);
+
+            $user = $this->User->find('first', [
+                'recursive' => -1,
+                'conditions' => ['User.email' => $email],
+            ]);
+            if ($user === false || empty($user)) {
+                $this->Flash->error('登録されていないメールアドレスです');
+                return false;
+            }
+
+        }
+    }
+    public function inquiry() {
+    }
 }

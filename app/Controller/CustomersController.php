@@ -14,13 +14,24 @@ class CustomersController extends AppController {
     public function index() {
         $customers = $this->Paginator->paginate('Customer');
         $this->set('customers', $customers);
+        $this->find();
     }
 
     public function find() {
         if ($this->request->data) {
             $confitions = array();
-            $search = $this->request->data['Customer']['search'];
-            $conditions = array('Customer.family_name LIKE' => "%{$search}%");
+            $search_sei = $this->request->data['Customer']['search_sei'];
+            $search_mei = $this->request->data['Customer']['search_mei'];
+            $search_mail = $this->request->data['Customer']['search_mail'];
+            $search_company = $this->request->data['Customer']['search_company'];
+            $search_comment = $this->request->data['Customer']['search_comment'];
+            $conditions = [
+                'Customer.family_name LIKE' => "%{$search_sei}%",
+                'Customer.given_name LIKE' => "%{$search_mei}%",
+                'Customer.email LIKE' => "%{$search_mail}%",
+                'Company.name LIKE' => "%{$search_company}%",
+                // 'Comment.body LIKE' => "%{$search_comment}%",
+                ];
             $customers = $this->paginate('Customer', $conditions);
 
         } else {

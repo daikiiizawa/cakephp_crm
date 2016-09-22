@@ -36,7 +36,8 @@ class User extends AppModel {
             ],
             'emailExists' => [
                 'rule' => ['isUnique', 'email'],
-                'message' => '入力されたメールアドレスは既に登録されています。'
+                'message' => '入力されたメールアドレスは既に登録されています。',
+                'on' => 'create'
             ],
         ],
         'image_url' => [

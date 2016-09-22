@@ -40,7 +40,7 @@
 
 <!-- 対応履歴一覧 -->
 <table>
-    <h2>対応履歴 (<?= count($comments);?>回)</h2>
+    <h2>対応履歴 (<?= count($comments);?>件)</h2>
     <div class="pagination">
         <?= $this->Paginator->first('最初', $options = array()) ;?>
         <?= $this->Paginator->prev('前へ', array(), null, ['class' => 'prev disabled']) ;?>
@@ -107,4 +107,5 @@
         'class' => 'btn btn-primary',
         'style' => 'margin:20px 0 30px 0'
     ]) ;?>
+</div>
 </div>
