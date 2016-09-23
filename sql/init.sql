@@ -1,4 +1,4 @@
-CREATE DATABASE `cakephp_crm`;
+CREATE DATABASE `cakephp_crm` DEFAULT CHARACTER SET utf8;
 use cakephp_crm
 
 -- usersテーブル作成
@@ -24,6 +24,12 @@ ALTER TABLE `users` ADD PRIMARY KEY (`id`);
 ALTER TABLE `users` ADD UNIQUE (`email`);
 ALTER TABLE `users` ADD UNIQUE (`reset_password_token`);
 ALTER TABLE `users` MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+-- ほげのパスワードは"hogehoge"
+INSERT INTO `users` (`email`, `password`, `family_name`, `given_name`, `image_url`) VALUES ("hoge@hoge.jp", "$2a$10$z7PFcAt7x6scCml/FRwrO.TsSjb6ezeJaO/w.6fqklPYEVaININVG", "ほげ", "ホゲ", "http://dora-world.com/twitter/vote/img/dora.png");
+INSERT INTO `users` (`email`, `password`, `family_name`, `given_name`, `image_url`) VALUES ("huga@huga.jp", "", "ふが", "フガ", "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQAdQWUqk1H6VgTz9CazhUgrJLEF_oFHNZUhWXMwgwTOz2gGK-EDA");
+INSERT INTO `users` (`email`, `password`, `family_name`, `given_name`, `image_url`) VALUES ("iiza@iiza.jp", "", "飯沢", "大樹", "http://b2.img.mobypicture.com/bea7c3f5b15bb85b5ec88ae362881476_view.jpg");
+
 
 -- postsテーブル作成
 CREATE TABLE `posts` (
@@ -84,21 +90,21 @@ ALTER TABLE `customers` MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 -- "index_customers_on_post_id"
 
 -- テストレコード挿入 // customers
-INSERT INTO `customers` (`family_name`, `given_name`, `email`, `company_id`, `post_id`, `created`) VALUES ("苗字1", "名前1", "aa@mail.com", "1", "1", now());
-INSERT INTO `customers` (`family_name`, `given_name`, `email`, `company_id`, `post_id`, `created`) VALUES ("苗字2", "名前2", "bb@mail.com", "2", "1", now());
-INSERT INTO `customers` (`family_name`, `given_name`, `email`, `company_id`, `post_id`, `created`) VALUES ("苗字3", "名前3", "cc@mail.com", "2", "1", now());
-INSERT INTO `customers` (`family_name`, `given_name`, `email`, `company_id`, `post_id`, `created`) VALUES ("苗字4", "名前4", "dd@mail.com", "3", "2", now());
-INSERT INTO `customers` (`family_name`, `given_name`, `email`, `company_id`, `post_id`, `created`) VALUES ("苗字5", "名前5", "ee@mail.com", "4", "4", now());
-INSERT INTO `customers` (`family_name`, `given_name`, `email`, `company_id`, `post_id`, `created`) VALUES ("苗字6", "名前1", "ff@mail.com", "1", "1", now());
-INSERT INTO `customers` (`family_name`, `given_name`, `email`, `company_id`, `post_id`, `created`) VALUES ("苗字7", "名前2", "gg@mail.com", "2", "1", now());
-INSERT INTO `customers` (`family_name`, `given_name`, `email`, `company_id`, `post_id`, `created`) VALUES ("苗字8", "名前3", "hh@mail.com", "2", "1", now());
-INSERT INTO `customers` (`family_name`, `given_name`, `email`, `company_id`, `post_id`, `created`) VALUES ("苗字9", "名前4", "ii@mail.com", "3", "2", now());
-INSERT INTO `customers` (`family_name`, `given_name`, `email`, `company_id`, `post_id`, `created`) VALUES ("苗字10", "名前5", "jj@mail.com", "4", "4", now());
-INSERT INTO `customers` (`family_name`, `given_name`, `email`, `company_id`, `post_id`, `created`) VALUES ("苗字11", "名前1", "kk@mail.com", "1", "1", now());
-INSERT INTO `customers` (`family_name`, `given_name`, `email`, `company_id`, `post_id`, `created`) VALUES ("苗字12", "名前2", "ll@mail.com", "2", "1", now());
-INSERT INTO `customers` (`family_name`, `given_name`, `email`, `company_id`, `post_id`, `created`) VALUES ("苗字13", "名前3", "mm@mail.com", "2", "1", now());
-INSERT INTO `customers` (`family_name`, `given_name`, `email`, `company_id`, `post_id`, `created`) VALUES ("苗字14", "名前4", "nn@mail.com", "3", "2", now());
-INSERT INTO `customers` (`family_name`, `given_name`, `email`, `company_id`, `post_id`, `created`) VALUES ("苗字15", "名前5", "oo@mail.com", "4", "4", now());
+INSERT INTO `customers` (`family_name`, `given_name`, `email`, `company_id`, `post_id`, `created`) VALUES ("田中", "太郎", "tanaka@gmail.com", "1", "1", now());
+INSERT INTO `customers` (`family_name`, `given_name`, `email`, `company_id`, `post_id`, `created`) VALUES ("高橋", "次郎", "taka@mail.com", "2", "1", now());
+INSERT INTO `customers` (`family_name`, `given_name`, `email`, `company_id`, `post_id`, `created`) VALUES ("鈴木", "一郎", "suzu@mail.com", "2", "1", now());
+INSERT INTO `customers` (`family_name`, `given_name`, `email`, `company_id`, `post_id`, `created`) VALUES ("高田", "大輔", "takada@mail.com", "3", "2", now());
+INSERT INTO `customers` (`family_name`, `given_name`, `email`, `company_id`, `post_id`, `created`) VALUES ("上野", "絵里", "ueno@mail.com", "4", "4", now());
+INSERT INTO `customers` (`family_name`, `given_name`, `email`, `company_id`, `post_id`, `created`) VALUES ("渡辺", "牧子", "wata@mail.com", "1", "1", now());
+INSERT INTO `customers` (`family_name`, `given_name`, `email`, `company_id`, `post_id`, `created`) VALUES ("斎藤", "和也", "sai@mail.com", "2", "1", now());
+INSERT INTO `customers` (`family_name`, `given_name`, `email`, `company_id`, `post_id`, `created`) VALUES ("野口", "秀雄", "ngu@mail.com", "2", "1", now());
+INSERT INTO `customers` (`family_name`, `given_name`, `email`, `company_id`, `post_id`, `created`) VALUES ("佐藤", "一真", "sato@mail.com", "3", "2", now());
+INSERT INTO `customers` (`family_name`, `given_name`, `email`, `company_id`, `post_id`, `created`) VALUES ("中田", "隆弘", "nakata@mail.com", "4", "4", now());
+INSERT INTO `customers` (`family_name`, `given_name`, `email`, `company_id`, `post_id`, `created`) VALUES ("坂本", "健太", "saka@mail.com", "1", "1", now());
+INSERT INTO `customers` (`family_name`, `given_name`, `email`, `company_id`, `post_id`, `created`) VALUES ("横田", "健介", "yokot@mail.com", "2", "1", now());
+INSERT INTO `customers` (`family_name`, `given_name`, `email`, `company_id`, `post_id`, `created`) VALUES ("前田", "譲二", "mae@mail.com", "2", "1", now());
+INSERT INTO `customers` (`family_name`, `given_name`, `email`, `company_id`, `post_id`, `created`) VALUES ("中村", "香織", "nakam@mail.com", "3", "2", now());
+INSERT INTO `customers` (`family_name`, `given_name`, `email`, `company_id`, `post_id`, `created`) VALUES ("本田", "圭佑", "hon@mail.com", "4", "4", now());
 
 
 -- commentsテーブル作成
@@ -118,10 +124,10 @@ ALTER TABLE `comments` MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 -- テストレコード挿入 // companies
 INSERT INTO `comments` (`body`, `user_id`, `customer_id`, `created`) VALUES ("選考の結果待ち", "1", "1", now());
-INSERT INTO `comments` (`body`, `user_id`, `customer_id`, `created`) VALUES ("選考の結果待ち", "1", "1", now());
-INSERT INTO `comments` (`body`, `user_id`, `customer_id`, `created`) VALUES ("選考の結果待ち", "2", "1", now());
-INSERT INTO `comments` (`body`, `user_id`, `customer_id`, `created`) VALUES ("選考の結果待ち", "2", "2", now());
-INSERT INTO `comments` (`body`, `user_id`, `customer_id`, `created`) VALUES ("選考の結果待ち", "3", "1", now());
+INSERT INTO `comments` (`body`, `user_id`, `customer_id`, `created`) VALUES ("11月に再度連絡予定", "1", "1", now());
+INSERT INTO `comments` (`body`, `user_id`, `customer_id`, `created`) VALUES ("選考中", "2", "1", now());
+INSERT INTO `comments` (`body`, `user_id`, `customer_id`, `created`) VALUES ("選考辞退", "2", "1", now());
+INSERT INTO `comments` (`body`, `user_id`, `customer_id`, `created`) VALUES ("取引停止中", "3", "2", now());
 INSERT INTO `comments` (`body`, `user_id`, `customer_id`, `created`) VALUES ("選考辞退", "2", "1", now());
 
 
