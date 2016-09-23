@@ -6,5 +6,10 @@
         'submitLabel' => '登録する'
         ]); ?>
 
+    <?= $this->Html->link(
+        '戻る',['action' => 'index'],[
+        'class' => "btn btn-default"]
+        ) ;?>
+
 </div>
 </div>

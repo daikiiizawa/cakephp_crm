@@ -6,9 +6,9 @@ class UsersController extends AppController {
     public $name = 'Users';
 
     public function beforeFilter() {
-        parent::beforeFilter();
 
-        $this->Auth->allow('signup', 'remind', 'inquiry');
+        $this->Auth->allow('login', 'signup', 'remind', 'inquiry');
+        parent::beforeFilter();
     }
 
     public function signup() {
@@ -74,14 +74,17 @@ class UsersController extends AppController {
                     $cookie = $this->request->data;
                     // cookie書き込み
                     $this->Cookie->write('remember_me_cookie', $this->request->data['User'], true, '+2 weeks');
-                // remember_meがチェックされていない場合
-                } else {
-                }
-                // リダイレクト
-                $this->Flash->success('ログインしました');
-                $this->redirect($this->Auth->redirectUrl());
+                    // var_dump($this->Cookie->read('remember_me_cookie'));
+                    // exit;
 
-                }
+            // remember_meがチェックされていない場合
+            } else {
+            }
+            // リダイレクト
+            $this->Flash->success('ログインしました');
+            $this->redirect($this->Auth->redirectUrl());
+
+            }
             $this->Flash->error('メールアドレスかパスワードが違います');
         }
     }

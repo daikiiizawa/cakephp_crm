@@ -36,7 +36,7 @@
         <?= $this->Form->input('search_mail', [
             'label' => '電子メール',
             'class' => 'form-control',
-            'style' => 'width:250px'
+            'style' => 'width:200px'
             ]); ?>
         </div>
 

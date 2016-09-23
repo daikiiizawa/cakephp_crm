@@ -40,16 +40,16 @@ class AppController extends Controller {
         $this->Cookie->httpOnly = true;
 
         if (!$this->Auth->loggedIn() && $this->Cookie->read('remember_me_cookie')) {
-                $cookie = $this->Cookie->read('remember_me_cookie');
-                $user = $this->User->find('first', array(
-                    'conditions' => array(
-                        'User.email' => $cookie['email'],
-                        'User.password' => $cookie['password']
-                    )
-                ));
-                if ($user && !$this->Auth->login($user['User'])) {
-                    $this->redirect('/users/logout'); // destroy session & cookie
-                }
+            $cookie = $this->Cookie->read('remember_me_cookie');
+            $user = $this->User->find('first', [
+                'conditions' => [
+                    'User.email' => $cookie['email'],
+                    'User.password' => $cookie['password']
+                ]
+            ]);
+            // if ($user && !$this->Auth->login($user['User'])) {
+            //     $this->redirect('/users/logout'); // destroy session & cookie
+            // }
         }
         $this->set('currentUser', $this->Auth->user());
     }
