@@ -32,14 +32,6 @@
 
 ## コントローラー内アクション
 * Users
-	* login
-	* signup
-	* useredit
-	* remind
+
 
 *	Customers
-	* index
-	* add
-	* view
-	* edit
-
