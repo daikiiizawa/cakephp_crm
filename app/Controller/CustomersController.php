@@ -11,6 +11,7 @@ class CustomersController extends AppController {
     ];
 
     public function index() {
+        $this->set('title_for_layout', '顧客一覧');
         $customers = $this->Paginator->paginate('Customer');
         $this->set('customers', $customers);
         $this->find();
@@ -68,6 +69,7 @@ class CustomersController extends AppController {
     }
 
     public function add() {
+        $this->set('title_for_layout', '顧客追加');
         $this->set('companies',$this->Company->find('list'));
         $this->set('posts',$this->Post->find('list',['fields'=>['id','position_name']]));
 
@@ -82,6 +84,7 @@ class CustomersController extends AppController {
     }
 
     public function edit($id = null) {
+        $this->set('title_for_layout', '顧客編集');
         if (!$this->Customer->exists($id)) {
             throw new NotFoundException('顧客情報がみつかりません');
         }
@@ -112,6 +115,7 @@ class CustomersController extends AppController {
     }
 
     public function view($id = null) {
+        $this->set('title_for_layout', '顧客詳細');
         if (!$this->Customer->exists($id)) {
             throw new NotFoundException('顧客情報がみつかりません');
         }

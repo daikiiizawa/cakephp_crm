@@ -12,6 +12,7 @@ class UsersController extends AppController {
     }
 
     public function signup() {
+        $this->set('title_for_layout', 'ユーザー登録');
         if ($this->Auth->user()) {
             return $this->redirect($this->Auth->redirectUrl());
         }
@@ -25,6 +26,7 @@ class UsersController extends AppController {
     }
 
     public function useredit() {
+        $this->set('title_for_layout', 'ユーザー編集');
         if ($this->request->is(['post', 'put'])) {
             if ($this->User->save($this->request->data)) {
                 $this->Flash->success('設定を更新しました');
@@ -61,6 +63,7 @@ class UsersController extends AppController {
     }
 
     public function login() {
+        $this->set('title_for_layout', 'ユーザーログイン');
         if ($this->Auth->user()) {
             return $this->redirect($this->Auth->redirectUrl());
         }
@@ -97,6 +100,7 @@ class UsersController extends AppController {
 
     // パスワードリマインダ処理
     public function remind () {
+        $this->set('title_for_layout', 'パスワードリマインダー');
         if ($this->request->is('post')) {
             if (!empty($this->request->data['User']['email'])) {
 

@@ -75,11 +75,11 @@ class AppController extends Controller {
             ],
             'loginRedirect' => [
                 'controller' => 'customers',
-                'action' => 'index'
+                'action' => 'index',
             ],
             'logoutRedirect' => [
                 'controller' => 'users',
-                'action' => 'login'
+                'action' => 'login',
             ],
 
             'authError' => 'ログインしてください',   // ログインが必要なページにアクセスした時のメッセージ
